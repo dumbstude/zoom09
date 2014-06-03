@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/prospectLayout2.xhtml">
+        <ui:define name="top">
+            #{bundle.Validate}
+        </ui:define>
+        <ui:define id="valcontent" name="content"> 
+            <h:form id="valForm">
+                <f:event type="preRenderView" listener="#{prospectBean.init}"/>
+                <f:event type="preRenderView" listener="#{applicantBean.init}"/>
+                <p:dataTable id="prospectList"
+                             value="#{prospectBean.prospectModel}"
+                             var="pList"
+                             rowIndexVar="rowIndex" 
+                             rowKey="#{pList.prospectNo}"
+                             widgetVar="prospectList"
+                             filteredValue= "#{prospectBean.filteredProspects}"
+                             scrollRows="20"
+                             scrollable="true"
+                             scrollWidth="370"
+                             liveScroll="true"
+                             selection="#{prospectBean.selectedProspect}"
+                             selectionMode="single"
+                             scrollHeight="150">
+                    <p:ajax event="rowSelect"
+                            async="true"
+                            update=":valForm"/>
+                    <p:column id="ptNoColumn" 
+                              filterBy="#{pList.ouCode.ouCode}"   
+                              headerText="PT No"   
+                              filterMatchMode="exact">  
+                        <h:outputText value="#{pList.ouCode.ouCode}" />  
+                    </p:column>  
+                    <p:column id="lastNameColumn"
+                              filterBy="lastName"
+                              filterMatchMode="exact"
+                              headerText="Last Name" >
+                        <h:outputText value="#{pList.lastName}" />
+                    </p:column>
+                    <p:column id="firstNameColumn"
+                              filterBy="firstName"
+                              filterMatchMode="exact"
+                              headerText="First Name" >
+                        <h:outputText value="#{pList.firstName}" />
+                    </p:column>
+                    <p:column id="middleNameColumn"
+                              filterBy="middleName"
+                              filterMatchMode="exact"
+                              headerText="Middle Name" >
+                        <h:outputText value="#{pList.middleName}" />
+                    </p:column>
+                </p:dataTable>
+                <h:message for="prospectList"/>
+                <br></br>
+                <br></br>
+                <h:panelGrid id="prospectPanel" columns="3" cellpadding="150" cellspacing="150" >
+                    <h:outputLabel id="lastNameLabel" 
+                                   for ="lastName" 
+                                   value="Surname"/>
+                    <h:inputText id="lastName" 
+                                 size="25" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.lastName}"
+                                 label="Last Name"/>
+                    <h:message for="lastName"/>
+                    <h:outputLabel id="firstNameLabel" 
+                                   for ="firstName" 
+                                   value="First Name"/>
+                    <h:inputText id="firstName" 
+                                 size="25" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.firstName}"
+                                 label="First Name"/>
+                    <h:message for="firstName"/>
+                    <h:outputLabel id="middleNameLabel" 
+                                   for="middleName" 
+                                   value="Middle Name"/>
+                    <h:inputText id="middleName" 
+                                 size="20" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.middleName}"
+                                 label="Middle Name"/>
+                    <h:message for="middleName"/>
+                    <h:outputLabel id="birthdateLabel" 
+                                   for="birthdate" 
+                                   value="Birthdate "/>
+                    <h:inputText id="birthdate" 
+                                 size="10"
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.birthdate}"
+                                 label="Birthdate" >
+                        <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:message for="birthdate"/>
+                    <h:outputLabel id="genderLabel" 
+                                   for="gender" 
+                                   value="Gender"/>
+                    <h:inputText id="gender" 
+                                 size="1"
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.gender}"
+                                 label="Gender"/>
+                    <h:message for="gender"/>
+                    <h:outputLabel id="nationalityLabel" 
+                                   for="nationality" 
+                                   value="Nationality"/>
+                    <h:inputText id="nationality" 
+                                 size="10" 
+                                 required="true"
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.nationality}"
+                                 label="Nationality"/>
+                    <h:message for="nationality"/>
+                    <h:outputLabel id="contactNumberLabel" 
+                                   for="contactNumber" 
+                                   value="Contact Number"/>
+                    <h:inputText id="contactNumber" 
+                                 size="11" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.contactNumber}"
+                                 label="Contact Number"/>
+                    <h:message for="contactNumber"/>
+                    <h:outputLabel id="lengthOfStayLabel" 
+                                   for="lengthOfStay" 
+                                   value="Length of stay"/>
+                    <h:inputText id="lengthOfStay" 
+                                 size="6" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.lengthOfStay}"
+                                 label="Length Of Stay"/>
+                    <h:message for="lengthOfStay"/>
+                    <h:outputLabel id="occupationLabel" 
+                                   for="occupation"
+                                   value="Occupation"/>
+                    <h:inputText id="occupation" 
+                                 size="14" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.occupation}"
+                                 label="Occupation"/>
+                    <h:message for="occupation"/>
+                    <h:outputLabel id="streetNameLabel"
+                                   for="streetName" 
+                                   value="Street Name" />
+                    <h:inputText id="streetName" label="Street Name" size="40" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.street}"/>
+                    <h:message for="streetName"/>
+                    <h:outputLabel id="barangayLabel" 
+                                   for="barangay" 
+                                   value="Barangay"/>
+                    <h:inputText id="barangay" 
+                                 size="15" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.barangay}"
+                                 label="Barangay"/>
+                    <h:message for="barangay"/>
+                    <h:outputLabel id="cityMunLabel" 
+                                   for="cityMun" 
+                                   value="City/Municipality"/>
+                    <h:inputText id="cityMun" size="15" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.cityMun}"
+                                 label="City/Municipality"/>
+                    <h:message for="cityMun"/>
+                    <h:outputLabel id="ptNoLabel" 
+                                   for="ptNo" 
+                                   value="PT Number"/>
+                    <h:inputText id="ptNo" 
+                                 size="15" 
+                                 readonly="true"
+                                 value="#{prospectBean.selectedProspect.ouCode.ouCode}"
+                                 label="PT Number"/>
+                    <h:message for="ptNo"/>
+                    <h:outputText value="&#160;" />     
+                </h:panelGrid>
+                <p><span style="margin-left:230px;"  >
+                        <h:commandButton id="backButton" 
+                                         value="Back " 
+                                         action="/xhtml/mainApplicant.xhtml" immediate="true" />
+                        <h:commandButton id="validateButton" 
+                                         disabled="#{empty prospectBean.selectedProspect.prospectNo}" 
+                                         value="Validate " 
+                                         action="/xhtml/addApplicant.xhtml" />
+                    </span> </p>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

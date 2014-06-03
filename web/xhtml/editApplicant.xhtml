@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents">
+    <ui:composition template="/templates/applicantLayout.xhtml">
+        <ui:define name="top">
+            #{bundle.Edit}
+        </ui:define>
+        <h4> Applicant Records </h4>
+        <ui:define id="defcontent" name="content"> 
+            <h:form id="editForm">
+                <prcc:applicantForm canNotInput="false"
+                                    notAble="false"/>
+                <br></br>
+                <p><span style="margin-left:260px;">
+                        <h:commandButton id="updateButton" value="Update " 
+                                         rendered="#{not empty applicantBean.selectedApplicant.applicantNo}"
+                                         action="#{applicantBean.saveEdit}" />
+                        <h:commandButton id="cancelButton" value="Cancel " 
+                                         rendered="#{not empty applicantBean.selectedApplicant.applicantNo}"
+                                         action="/xhtml/mainApplicant.xhtml" immediate="true" />
+                    </span> </p>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/templates/applicantLayout.xhtml">
+        <ui:define name="top">
+            #{bundle.Main}
+        </ui:define>
+        <h4> Applicant Records </h4>
+        <ui:define id="defcontent" name="content"> 
+            <f:event type="preRenderView" listener="#{newApplicantBean.beanclear()}"/>
+            <h:form id="viewForm">
+                <prcc:applicantForm2 canNotInput="true"
+                                     off="true"
+                                     notAble="true" />
+                <br></br>
+                <p><span style="margin-left:190px;">
+                        <h:commandButton value="Add" action="/xhtml/validateProspect.xhtml" immediate="true" />
+                        <h:commandButton value="View " action="/xhtml/viewApplicant.xhtml" immediate ="true"/>
+                        <h:commandButton value="Print All " action="/xhtml/printAllApplicants.xhtml" immediate ="true"/>
+                    </span> </p>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
