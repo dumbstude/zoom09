@@ -72,6 +72,9 @@ public class NewApplicantBean implements Serializable {
     }
 
     public String save() {
+		applicant.setFirstName(prospectBean.getSelectedProspect().getFirstName());
+		applicant.setLastName(prospectBean.getSelectedProspect().getLastName());
+		//unfinis
         coopApplicantFacadeREST.create(applicant);
         applicant = new CoopApplicant();
         return "addApplicant";
