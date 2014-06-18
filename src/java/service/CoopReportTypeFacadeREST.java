@@ -1,7 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package service;
 
 import java.util.List;
@@ -20,69 +22,69 @@ import model.CoopReportType;
 
 /**
  *
- * @author roland
+ * @author mis
  */
 @Stateless
 @Path("model.coopreporttype")
 public class CoopReportTypeFacadeREST extends AbstractFacade<CoopReportType> {
-    @PersistenceContext(unitName = "zoom09PU")
-    private EntityManager em;
+	@PersistenceContext(unitName = "zoom09PU")
+	private EntityManager em;
 
-    public CoopReportTypeFacadeREST() {
-        super(CoopReportType.class);
-    }
+	public CoopReportTypeFacadeREST() {
+		super(CoopReportType.class);
+	}
 
-    @POST
+	@POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(CoopReportType entity) {
-        super.create(entity);
-    }
+	public void create(CoopReportType entity) {
+		super.create(entity);
+	}
 
-    @PUT
-    @Override
+	@PUT
+    @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-    public void edit(CoopReportType entity) {
-        super.edit(entity);
-    }
+	public void edit(@PathParam("id") Integer id, CoopReportType entity) {
+		super.edit(entity);
+	}
 
-    @DELETE
+	@DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") String id) {
-        super.remove(super.find(id));
-    }
+	public void remove(@PathParam("id") Integer id) {
+		super.remove(super.find(id));
+	}
 
-    @GET
+	@GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public CoopReportType find(@PathParam("id") String id) {
-        return super.find(id);
-    }
+	public CoopReportType find(@PathParam("id") Integer id) {
+		return super.find(id);
+	}
 
-    @GET
+	@GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<CoopReportType> findAll() {
-        return super.findAll();
-    }
+	public List<CoopReportType> findAll() {
+		return super.findAll();
+	}
 
-    @GET
+	@GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<CoopReportType> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
+	public List<CoopReportType> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+		return super.findRange(new int[]{from, to});
+	}
 
-    @GET
+	@GET
     @Path("count")
     @Produces("text/plain")
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
+	public String countREST() {
+		return String.valueOf(super.count());
+	}
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-    
+	@Override
+	protected EntityManager getEntityManager() {
+		return em;
+	}
+	
 }

@@ -1,7 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package service;
 
 import java.util.List;
@@ -20,69 +22,69 @@ import model.CoopApplicant;
 
 /**
  *
- * @author roland
+ * @author mis
  */
 @Stateless
 @Path("model.coopapplicant")
 public class CoopApplicantFacadeREST extends AbstractFacade<CoopApplicant> {
-    @PersistenceContext(unitName = "zoom09PU")
-    private EntityManager em;
+	@PersistenceContext(unitName = "zoom09PU")
+	private EntityManager em;
 
-    public CoopApplicantFacadeREST() {
-        super(CoopApplicant.class);
-    }
+	public CoopApplicantFacadeREST() {
+		super(CoopApplicant.class);
+	}
 
-    @POST
+	@POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(CoopApplicant entity) {
-        super.create(entity);
-    }
+	public void create(CoopApplicant entity) {
+		super.create(entity);
+	}
 
-    @PUT
-    @Override
+	@PUT
+    @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-    public void edit(CoopApplicant entity) {
-        super.edit(entity);
-    }
+	public void edit(@PathParam("id") Integer id, CoopApplicant entity) {
+		super.edit(entity);
+	}
 
-    @DELETE
+	@DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") String id) {
-        super.remove(super.find(id));
-    }
+	public void remove(@PathParam("id") Integer id) {
+		super.remove(super.find(id));
+	}
 
-    @GET
+	@GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public CoopApplicant find(@PathParam("id") String id) {
-        return super.find(id);
-    }
+	public CoopApplicant find(@PathParam("id") Integer id) {
+		return super.find(id);
+	}
 
-    @GET
+	@GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<CoopApplicant> findAll() {
-        return super.findAll();
-    }
+	public List<CoopApplicant> findAll() {
+		return super.findAll();
+	}
 
-    @GET
+	@GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<CoopApplicant> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
+	public List<CoopApplicant> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+		return super.findRange(new int[]{from, to});
+	}
 
-    @GET
+	@GET
     @Path("count")
     @Produces("text/plain")
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
+	public String countREST() {
+		return String.valueOf(super.count());
+	}
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-    
+	@Override
+	protected EntityManager getEntityManager() {
+		return em;
+	}
+	
 }
