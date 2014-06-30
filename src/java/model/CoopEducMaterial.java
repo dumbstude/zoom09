@@ -36,7 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "CoopEducMaterial.findByType", query = "SELECT c FROM CoopEducMaterial c WHERE c.type = :type"),
 	@NamedQuery(name = "CoopEducMaterial.findByTitle", query = "SELECT c FROM CoopEducMaterial c WHERE c.title = :title"),
 	@NamedQuery(name = "CoopEducMaterial.findByCopyNo", query = "SELECT c FROM CoopEducMaterial c WHERE c.copyNo = :copyNo"),
-	@NamedQuery(name = "CoopEducMaterial.findByBorrower", query = "SELECT c FROM CoopEducMaterial c WHERE c.borrower = :borrower"),
 	@NamedQuery(name = "CoopEducMaterial.findByMatStat", query = "SELECT c FROM CoopEducMaterial c WHERE c.matStat = :matStat")})
 public class CoopEducMaterial implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -60,9 +59,6 @@ public class CoopEducMaterial implements Serializable {
     @Size(min = 1, max = 2)
     @Column(name = "copy_no")
 	private String copyNo;
-	@Size(max = 10)
-    @Column(name = "borrower")
-	private String borrower;
 	@Column(name = "mat_stat")
 	private Boolean matStat;
 	@OneToMany(mappedBy = "invNo")
@@ -112,14 +108,6 @@ public class CoopEducMaterial implements Serializable {
 
 	public void setCopyNo(String copyNo) {
 		this.copyNo = copyNo;
-	}
-
-	public String getBorrower() {
-		return borrower;
-	}
-
-	public void setBorrower(String borrower) {
-		this.borrower = borrower;
 	}
 
 	public Boolean getMatStat() {

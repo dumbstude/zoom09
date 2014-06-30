@@ -10,12 +10,15 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -68,6 +71,11 @@ public class CoopOrgUnit implements Serializable {
 	private Collection<CoopReport> coopReportCollection;
 	@OneToMany(mappedBy = "ouCode")
 	private Collection<CoopProspect> coopProspectCollection;
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "coopOrgUnit1")
+	private CoopOrgUnit coopOrgUnit;
+	@JoinColumn(name = "ou_code", referencedColumnName = "ou_code", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+	private CoopOrgUnit coopOrgUnit1;
 
 	public CoopOrgUnit() {
 	}
@@ -155,6 +163,22 @@ public class CoopOrgUnit implements Serializable {
 
 	public void setCoopProspectCollection(Collection<CoopProspect> coopProspectCollection) {
 		this.coopProspectCollection = coopProspectCollection;
+	}
+
+	public CoopOrgUnit getCoopOrgUnit() {
+		return coopOrgUnit;
+	}
+
+	public void setCoopOrgUnit(CoopOrgUnit coopOrgUnit) {
+		this.coopOrgUnit = coopOrgUnit;
+	}
+
+	public CoopOrgUnit getCoopOrgUnit1() {
+		return coopOrgUnit1;
+	}
+
+	public void setCoopOrgUnit1(CoopOrgUnit coopOrgUnit1) {
+		this.coopOrgUnit1 = coopOrgUnit1;
 	}
 
 	@Override

@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents"
-            xmlns:f="http://java.sun.com/jsf/core">
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/templates/applicantLayout.xhtml">
         <ui:define name="top">
             #{bundle.Add}
@@ -12,16 +13,18 @@
         <h4> Applicant Records </h4>
         <ui:define id="defcontent" name="content"> 
             <h:form id="addForm">
-                <f:event type="preRenderView" listener="#{newApplicantBean.beanclear()}"/>
-                <prcc:applicantForm3 applicant ="#{newApplicantBean.applicant}"
+                <f:event type="preRenderView" listener="#{prospectBean.init}"/>
+                <prcc:applicantForm3 applicant ="#{prospectBean.selectedProspect}"
                                      canNotInput="false"
                                      off="false"
                                      notAble="false"/>
                 <br></br>
-                <p><span style="margin-left:245px;">
+                <p>
+					<span style="margin-left:245px;">
                         <h:commandButton value="Cancel" action="/xhtml/validateProspect.xhtml" immediate="true" />
-                        <h:commandButton value="Save" action="#{newApplicantBean.save()}"/>
-                    </span> </p>
+                        <p:commandButton value="Save" ajax="false" action="#{prospectBean.saveth}"/>
+                    </span>
+				</p>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
-    <Scope Scope="Project"/>
+    <Scope Scope="Project">
+        <Node id="resources/prcomponents/applicantForm.xhtml" x="852" y="213" zoom="true"/>
+        <Node id="xhtml/addApplicant.xhtml" x="512" y="236" zoom="true"/>
+        <Node id="xhtml/mainApplicant.xhtml" x="198" y="267" zoom="true"/>
+        <Node id="xhtml/newjsf.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="xhtml/viewApplicant.xhtml" x="932" y="92" zoom="true"/>
+        <Node id="xhtml/editApplicant.xhtml" x="1036" y="333" zoom="true"/>
+        <Node id="xhtml/validateProspect.xhtml" x="663" y="154" zoom="true"/>
+        <Node id="resources/prcomponents/applicantForm3.xhtml" x="118" y="82" zoom="true"/>
+        <Node id="templates/applicantLayout.xhtml" x="436" y="348" zoom="true"/>
+        <Node id="templates/prospectLayout2.xhtml" x="812" y="258" zoom="true"/>
+        <Node id="resources/prcomponents/prospectForm4.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="resources/prcomponents/applicantForm2.xhtml" x="421" y="391" zoom="true"/>
+    </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

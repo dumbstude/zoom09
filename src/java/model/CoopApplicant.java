@@ -60,7 +60,9 @@ import javax.xml.bind.annotation.XmlTransient;
 	@NamedQuery(name = "CoopApplicant.findByBoardResoNo", query = "SELECT c FROM CoopApplicant c WHERE c.boardResoNo = :boardResoNo"),
 	@NamedQuery(name = "CoopApplicant.findByActionDate", query = "SELECT c FROM CoopApplicant c WHERE c.actionDate = :actionDate"),
 	@NamedQuery(name = "CoopApplicant.findByApplicantStatRem", query = "SELECT c FROM CoopApplicant c WHERE c.applicantStatRem = :applicantStatRem"),
-	@NamedQuery(name = "CoopApplicant.findByResidentSince", query = "SELECT c FROM CoopApplicant c WHERE c.residentSince = :residentSince")})
+	@NamedQuery(name = "CoopApplicant.findByResidentSince", query = "SELECT c FROM CoopApplicant c WHERE c.residentSince = :residentSince"),
+	@NamedQuery(name = "CoopApplicant.findByCivilStatus", query = "SELECT c FROM CoopApplicant c WHERE c.civilStatus = :civilStatus"),
+	@NamedQuery(name = "CoopApplicant.findByEducation", query = "SELECT c FROM CoopApplicant c WHERE c.education = :education")})
 public class CoopApplicant implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -147,6 +149,10 @@ public class CoopApplicant implements Serializable {
 	@Column(name = "resident_since")
     @Temporal(TemporalType.DATE)
 	private Date residentSince;
+	@Column(name = "civil_status")
+	private Character civilStatus;
+	@Column(name = "education")
+	private Character education;
 	@JoinTable(name = "coop_member_applicant", joinColumns = {
     	@JoinColumn(name = "applicant_no", referencedColumnName = "applicant_no")}, inverseJoinColumns = {
     	@JoinColumn(name = "mem_no", referencedColumnName = "mem_no")})
@@ -356,6 +362,22 @@ public class CoopApplicant implements Serializable {
 
 	public void setResidentSince(Date residentSince) {
 		this.residentSince = residentSince;
+	}
+
+	public Character getCivilStatus() {
+		return civilStatus;
+	}
+
+	public void setCivilStatus(Character civilStatus) {
+		this.civilStatus = civilStatus;
+	}
+
+	public Character getEducation() {
+		return education;
+	}
+
+	public void setEducation(Character education) {
+		this.education = education;
 	}
 
 	@XmlTransient

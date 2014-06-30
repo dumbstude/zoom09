@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents">
+      xmlns:prcc="http://java.sun.com/jsf/composite/prcomponents"
+	  xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/templates/applicantLayout.xhtml">
         <ui:define name="top">
             #{bundle.View}
@@ -20,7 +21,8 @@
                         <h:commandButton value="Print" 
                                          disabled="#{empty applicantBean.selectedApplicant.applicantNo}"
                                          action="/xhtml/printApplicant.xhtml" immediate ="true"/>
-                        <h:commandButton value="Edit" 
+                        <p:commandButton id="editApplicant"
+										 value="Edit" 
                                          disabled="#{empty applicantBean.selectedApplicant.applicantNo}"
                                          action="/xhtml/editApplicant.xhtml" immediate="true" />
                     </span> </p>

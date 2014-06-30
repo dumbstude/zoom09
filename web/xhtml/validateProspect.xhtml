@@ -14,13 +14,11 @@
         <ui:define id="valcontent" name="content"> 
             <h:form id="valForm">
                 <f:event type="preRenderView" listener="#{prospectBean.init}"/>
-                <f:event type="preRenderView" listener="#{applicantBean.init}"/>
                 <p:dataTable id="prospectList"
                              value="#{prospectBean.prospectModel}"
                              var="pList"
                              rowIndexVar="rowIndex" 
                              rowKey="#{pList.prospectNo}"
-                             widgetVar="prospectList"
                              filteredValue= "#{prospectBean.filteredProspects}"
                              scrollRows="20"
                              scrollable="true"
@@ -35,7 +33,8 @@
                     <p:column id="ptNoColumn" 
                               filterBy="#{pList.ouCode.ouCode}"   
                               headerText="PT No"   
-                              filterMatchMode="exact">  
+                              filterMatchMode="exact"
+							  style="width: 10%;">  
                         <h:outputText value="#{pList.ouCode.ouCode}" />  
                     </p:column>  
                     <p:column id="lastNameColumn"
@@ -184,10 +183,10 @@
                         <h:commandButton id="backButton" 
                                          value="Back " 
                                          action="/xhtml/mainApplicant.xhtml" immediate="true" />
-                        <h:commandButton id="validateButton" 
+                        <p:commandButton id="validateButton" 
                                          disabled="#{empty prospectBean.selectedProspect.prospectNo}" 
                                          value="Validate " 
-                                         action="/xhtml/addApplicant.xhtml" />
+                                         action="/xhtml/addApplicant.xhtml?faces-redirect=true" />
                     </span> </p>
             </h:form>
         </ui:define>

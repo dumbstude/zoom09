@@ -35,8 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
 	@NamedQuery(name = "CoopAppSubjRating.findAll", query = "SELECT c FROM CoopAppSubjRating c"),
 	@NamedQuery(name = "CoopAppSubjRating.findByAppSubjRatingNum", query = "SELECT c FROM CoopAppSubjRating c WHERE c.appSubjRatingNum = :appSubjRatingNum"),
-	@NamedQuery(name = "CoopAppSubjRating.findByEffortRate", query = "SELECT c FROM CoopAppSubjRating c WHERE c.effortRate = :effortRate"),
-	@NamedQuery(name = "CoopAppSubjRating.findByUnderstandingRate", query = "SELECT c FROM CoopAppSubjRating c WHERE c.understandingRate = :understandingRate"),
+	@NamedQuery(name = "CoopAppSubjRating.findByEffortGrade", query = "SELECT c FROM CoopAppSubjRating c WHERE c.effortGrade = :effortGrade"),
+	@NamedQuery(name = "CoopAppSubjRating.findByUnderstandingGrade", query = "SELECT c FROM CoopAppSubjRating c WHERE c.understandingGrade = :understandingGrade"),
 	@NamedQuery(name = "CoopAppSubjRating.findByDelMethod", query = "SELECT c FROM CoopAppSubjRating c WHERE c.delMethod = :delMethod"),
 	@NamedQuery(name = "CoopAppSubjRating.findByRemarks", query = "SELECT c FROM CoopAppSubjRating c WHERE c.remarks = :remarks"),
 	@NamedQuery(name = "CoopAppSubjRating.findByEvalDate", query = "SELECT c FROM CoopAppSubjRating c WHERE c.evalDate = :evalDate")})
@@ -49,12 +49,12 @@ public class CoopAppSubjRating implements Serializable {
 	private Integer appSubjRatingNum;
 	@Basic(optional = false)
     @NotNull
-    @Column(name = "effort_rate")
-	private int effortRate;
+    @Column(name = "effort_grade")
+	private int effortGrade;
 	@Basic(optional = false)
     @NotNull
-    @Column(name = "understanding_rate")
-	private int understandingRate;
+    @Column(name = "understanding_grade")
+	private int understandingGrade;
 	@Basic(optional = false)
     @NotNull
     @Column(name = "del_method")
@@ -81,10 +81,10 @@ public class CoopAppSubjRating implements Serializable {
 		this.appSubjRatingNum = appSubjRatingNum;
 	}
 
-	public CoopAppSubjRating(Integer appSubjRatingNum, int effortRate, int understandingRate, Character delMethod, Date evalDate) {
+	public CoopAppSubjRating(Integer appSubjRatingNum, int effortGrade, int understandingGrade, Character delMethod, Date evalDate) {
 		this.appSubjRatingNum = appSubjRatingNum;
-		this.effortRate = effortRate;
-		this.understandingRate = understandingRate;
+		this.effortGrade = effortGrade;
+		this.understandingGrade = understandingGrade;
 		this.delMethod = delMethod;
 		this.evalDate = evalDate;
 	}
@@ -97,20 +97,20 @@ public class CoopAppSubjRating implements Serializable {
 		this.appSubjRatingNum = appSubjRatingNum;
 	}
 
-	public int getEffortRate() {
-		return effortRate;
+	public int getEffortGrade() {
+		return effortGrade;
 	}
 
-	public void setEffortRate(int effortRate) {
-		this.effortRate = effortRate;
+	public void setEffortGrade(int effortGrade) {
+		this.effortGrade = effortGrade;
 	}
 
-	public int getUnderstandingRate() {
-		return understandingRate;
+	public int getUnderstandingGrade() {
+		return understandingGrade;
 	}
 
-	public void setUnderstandingRate(int understandingRate) {
-		this.understandingRate = understandingRate;
+	public void setUnderstandingGrade(int understandingGrade) {
+		this.understandingGrade = understandingGrade;
 	}
 
 	public Character getDelMethod() {

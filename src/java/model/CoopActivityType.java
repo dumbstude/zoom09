@@ -49,7 +49,7 @@ public class CoopActivityType implements Serializable {
 	private String actType;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2147483647)
+	@Size(max = 2147483647)
     @Column(name = "act_desc")
 	private String actDesc;
 	@OneToMany(mappedBy = "actTypeCode")
