@@ -20,31 +20,24 @@
             <h:outputLabel id="applicDateLabel"
                            for="applicDateLabel" 
                            value="Date of Application  : " />
-            <h:inputText id="applicDate"
-                         binding="#{applicDateLabel}"
-                         value="#{newApplicantBean.applicant.applicationDate}" 
-                         required="true" 
-                         readonly="true"
-                         size="10"> 
-                <f:convertDateTime type ="date" pattern="MM/dd/yyyy"/>  
-            </h:inputText>
+            <p:calendar id="applicDate"
+						value="#{prospectBean.applicant.applicationDate}" 
+						maxdate="#{currentDate}"
+						navigator="true"
+						required="true" 
+						readonlyInput="true"
+						pattern="MM/dd/yyyy"
+						size="10"/>
             <h:message for ="applicDate" />  
-            <h:outputLabel id="applicNoLabel"
-                           for="applicNoLabel"
-                           value="Application #:" />
-            <h:inputText id="applicNo"
-                         size="10" 
-                         readonly="#{cc.attrs.canNotInput}"
-                         value="to be assigned"/>
-            <h:message for ="applicNo" />  
             <h:outputLabel id="applicStatLabel"
                            for ="applicStatLabel"
                            value="Application Status"/>
             <h:inputText id ="applicStat" 
                          size="12" 
                          required="true"
+						 maxlength="1"
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.applicant.applicationStat}"/> 
+                         value="#{prospectBean.applicant.applicationStat}"/> 
             <h:message for ="applicStat" />  
             <h:outputLabel id="lastNameLabel" 
                            for ="lastName" 
@@ -53,7 +46,7 @@
                          size="20" 
                          required="true"
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.lastName}"
+                         value="#{cc.attrs.applicant.lastName}"
                          label="Surname"/> 
             <h:message for ="lastName" />  
             <h:outputLabel id="firstNameLabel" 
@@ -63,7 +56,7 @@
                          size="25" 
                          required="true"
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.firstName}"
+                         value="#{cc.attrs.applicant.firstName}"
                          label="First Name"/>
             <h:message for="firstName"/>
             <h:outputLabel id="middleNameLabel" 
@@ -72,14 +65,14 @@
             <h:inputText id="middleName" 
                          size="20" 
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.middleName}"
+                         value="#{cc.attrs.applicant.middleName}"
                          label="Middle Name"/>
             <h:message for="middleName"/>
             <h:outputLabel id="birthdateLabel" 
                            for="birthdateLabel" 
                            value="Birthdate "/>
             <p:calendar id="birthdate" 
-                        value="#{newApplicantBean.prospectBean.selectedProspect.birthdate}" 
+                        value="#{cc.attrs.applicant.birthdate}" 
                         navigator="true" 
                         required="true"
                         mode="popup"  
@@ -96,7 +89,7 @@
                          required="true"
                          size="5"
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.gender}" 
+                         value="#{cc.attrs.applicant.gender}" 
                          disabled="#{cc.attrs.notAble}">
             </h:inputText>
             <h:message for="gender"/>
@@ -107,7 +100,7 @@
                              label ="Civil Status" 
                              required="true"
                              readonly="#{cc.attrs.canNotInput}"
-                             value="#{newApplicantBean.applicantBean.selectedApplicant.civilStatus}" 
+                             value="#{prospectBean.applicant.civilStatus}" 
                              disabled="#{cc.attrs.notAble}">
                 <f:selectItem itemLabel="Single" 
                               itemValue ="S"/>
@@ -126,7 +119,7 @@
                          size="10" 
                          required="true"
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.nationality}"
+                         value="#{cc.attrs.applicant.nationality}"
                          label="Nationality"/>
             <h:message for="nationality"/>
             <h:outputLabel id="contactNumberLabel" 
@@ -135,20 +128,19 @@
             <h:inputText id="contactNumber" 
                          size="11" 
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.contactNumber}"
+                         value="#{cc.attrs.applicant.contactNumber}"
                          label="Contact Number"/>
             <h:message for="contactNumber"/>
             <h:outputLabel id="residentSinceLabel" 
                            for="residentSinceLabel" 
                            value="Resident Since "/>
             <p:calendar id="residentSince" 
-                        value="#{newApplicantBean.applicantBean.selectedApplicant.residentSince}" 
+                        value="#{prospectBean.applicant.residentSince}" 
                         readonly="#{cc.attrs.canNotInput}" 
-                        yearRange="-60"
-                        showOn="button"
+                        mindate="01/01/1910"
                         navigator="true"
-                        required="true"  
-                        pattern="yyy"/> 
+						pattern="MM/dd/yyyy"
+                        required="true"/> 
             <h:message for="residentSince"/>
             <h:outputLabel id="educationLabel"
                            for="educationLabel"
@@ -156,7 +148,7 @@
             <h:selectOneMenu id="education" 
                              label ="Education" 
                              readonly="#{cc.attrs.canNotInput}"
-                             value="#{newApplicantBean.applicantBean.selectedApplicant.education}" 
+                             value="#{prospectBean.applicant.education}" 
                              disabled="#{cc.attrs.notAble}">
                 <f:selectItem itemLabel="Post-Graduate" 
                               itemValue ="P"/>
@@ -173,9 +165,10 @@
                            value="Occupation"/>
             <h:inputText id="occupation" 
                          size="14" 
+						 maxlength="14"
                          required="true"
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.occupation}"
+                         value="#{cc.attrs.applicant.occupation}"
                          label="Occupation"/>
             <h:message for="occupation"/>
             <h:outputLabel id="streetNameLabel"
@@ -184,7 +177,7 @@
             <h:inputText id="streetName" 
                          label="Street Name" size="40" 
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.street}"/>
+                         value="#{cc.attrs.applicant.street}"/>
             <h:message for="streetName"/>
             <h:outputLabel id="barangayLabel" 
                            for="barangayLabel" 
@@ -192,7 +185,7 @@
             <h:inputText id="barangay" 
                          size="15" 
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.barangay}"
+                         value="#{cc.attrs.applicant.barangay}"
                          label="Barangay"/>
             <h:message for="barangay"/>
             <h:outputLabel id="cityMunLabel" 
@@ -202,17 +195,10 @@
                          size="15" 
                          required="true"
                          readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.cityMun}"
+                         value="#{cc.attrs.applicant.cityMun}"
                          label="City/Municipality"/>
             <h:message for="cityMun"/>
-            <h:outputLabel id="ptNoLabel" 
-                           for="ptNo" 
-                           value="PT Number"/>
-            <h:inputText id="ptNo" size="15" 
-                         readonly="#{cc.attrs.canNotInput}"
-                         value="#{newApplicantBean.prospectBean.selectedProspect.ouCode.ouCode}"
-                         label="PT Number"/>
-            <h:message for="ptNo"/>
         </h:panelGrid>
     </composite:implementation>
 </html>
+

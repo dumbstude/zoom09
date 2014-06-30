@@ -1,7 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model;
 
 import java.io.Serializable;
@@ -20,82 +22,82 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author roland
+ * @author mis
  */
 @Entity
 @Table(name = "coop_rep_act")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CoopRepAct.findAll", query = "SELECT c FROM CoopRepAct c"),
-    @NamedQuery(name = "CoopRepAct.findByRepActRecno", query = "SELECT c FROM CoopRepAct c WHERE c.repActRecno = :repActRecno")})
+	@NamedQuery(name = "CoopRepAct.findAll", query = "SELECT c FROM CoopRepAct c"),
+	@NamedQuery(name = "CoopRepAct.findByRepActNum", query = "SELECT c FROM CoopRepAct c WHERE c.repActNum = :repActNum")})
 public class CoopRepAct implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "rep_act_recno")
-    private Integer repActRecno;
-    @JoinColumn(name = "report_num", referencedColumnName = "report_num")
+    @Column(name = "rep_act_num")
+	private Integer repActNum;
+	@JoinColumn(name = "report_num", referencedColumnName = "report_num")
     @ManyToOne
-    private CoopReport reportNum;
-    @JoinColumn(name = "act_recno", referencedColumnName = "act_recno")
+	private CoopReport reportNum;
+	@JoinColumn(name = "act_num", referencedColumnName = "act_num")
     @ManyToOne
-    private CoopActivity actRecno;
+	private CoopActivity actNum;
 
-    public CoopRepAct() {
-    }
+	public CoopRepAct() {
+	}
 
-    public CoopRepAct(Integer repActRecno) {
-        this.repActRecno = repActRecno;
-    }
+	public CoopRepAct(Integer repActNum) {
+		this.repActNum = repActNum;
+	}
 
-    public Integer getRepActRecno() {
-        return repActRecno;
-    }
+	public Integer getRepActNum() {
+		return repActNum;
+	}
 
-    public void setRepActRecno(Integer repActRecno) {
-        this.repActRecno = repActRecno;
-    }
+	public void setRepActNum(Integer repActNum) {
+		this.repActNum = repActNum;
+	}
 
-    public CoopReport getReportNum() {
-        return reportNum;
-    }
+	public CoopReport getReportNum() {
+		return reportNum;
+	}
 
-    public void setReportNum(CoopReport reportNum) {
-        this.reportNum = reportNum;
-    }
+	public void setReportNum(CoopReport reportNum) {
+		this.reportNum = reportNum;
+	}
 
-    public CoopActivity getActRecno() {
-        return actRecno;
-    }
+	public CoopActivity getActNum() {
+		return actNum;
+	}
 
-    public void setActRecno(CoopActivity actRecno) {
-        this.actRecno = actRecno;
-    }
+	public void setActNum(CoopActivity actNum) {
+		this.actNum = actNum;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (repActRecno != null ? repActRecno.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (repActNum != null ? repActNum.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CoopRepAct)) {
-            return false;
-        }
-        CoopRepAct other = (CoopRepAct) object;
-        if ((this.repActRecno == null && other.repActRecno != null) || (this.repActRecno != null && !this.repActRecno.equals(other.repActRecno))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof CoopRepAct)) {
+			return false;
+		}
+		CoopRepAct other = (CoopRepAct) object;
+		if ((this.repActNum == null && other.repActNum != null) || (this.repActNum != null && !this.repActNum.equals(other.repActNum))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "model.CoopRepAct[ repActRecno=" + repActRecno + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "model.CoopRepAct[ repActNum=" + repActNum + " ]";
+	}
+	
 }

@@ -11,7 +11,7 @@
         </ui:define>
         <h4> Applicant Records </h4>
         <ui:define id="defcontent" name="content"> 
-            <f:event type="preRenderView" listener="#{newApplicantBean.beanclear()}"/>
+            <f:event type="preRenderView" listener="#{prospectBean.init}"/>
             <h:form id="viewForm">
                 <prcc:applicantForm2 canNotInput="true"
                                      off="true"

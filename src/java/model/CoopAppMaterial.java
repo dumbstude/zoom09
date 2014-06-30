@@ -1,7 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model;
 
 import java.io.Serializable;
@@ -23,106 +25,106 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author roland
+ * @author mis
  */
 @Entity
 @Table(name = "coop_app_material")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CoopAppMaterial.findAll", query = "SELECT c FROM CoopAppMaterial c"),
-    @NamedQuery(name = "CoopAppMaterial.findByAppMatRecno", query = "SELECT c FROM CoopAppMaterial c WHERE c.appMatRecno = :appMatRecno"),
-    @NamedQuery(name = "CoopAppMaterial.findByDateBorrowed", query = "SELECT c FROM CoopAppMaterial c WHERE c.dateBorrowed = :dateBorrowed"),
-    @NamedQuery(name = "CoopAppMaterial.findByDateReturned", query = "SELECT c FROM CoopAppMaterial c WHERE c.dateReturned = :dateReturned")})
+	@NamedQuery(name = "CoopAppMaterial.findAll", query = "SELECT c FROM CoopAppMaterial c"),
+	@NamedQuery(name = "CoopAppMaterial.findByAppMatNum", query = "SELECT c FROM CoopAppMaterial c WHERE c.appMatNum = :appMatNum"),
+	@NamedQuery(name = "CoopAppMaterial.findByDateBorrowed", query = "SELECT c FROM CoopAppMaterial c WHERE c.dateBorrowed = :dateBorrowed"),
+	@NamedQuery(name = "CoopAppMaterial.findByDateReturned", query = "SELECT c FROM CoopAppMaterial c WHERE c.dateReturned = :dateReturned")})
 public class CoopAppMaterial implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "app_mat_recno")
-    private Integer appMatRecno;
-    @Column(name = "date_borrowed")
+    @Column(name = "app_mat_num")
+	private Integer appMatNum;
+	@Column(name = "date_borrowed")
     @Temporal(TemporalType.DATE)
-    private Date dateBorrowed;
-    @Column(name = "date_returned")
+	private Date dateBorrowed;
+	@Column(name = "date_returned")
     @Temporal(TemporalType.DATE)
-    private Date dateReturned;
-    @JoinColumn(name = "inv_no", referencedColumnName = "inv_no")
+	private Date dateReturned;
+	@JoinColumn(name = "inv_no", referencedColumnName = "inv_no")
     @ManyToOne
-    private CoopEducMaterial invNo;
-    @JoinColumn(name = "applicant_no", referencedColumnName = "applicant_no")
+	private CoopEducMaterial invNo;
+	@JoinColumn(name = "applicant_no", referencedColumnName = "applicant_no")
     @ManyToOne
-    private CoopApplicant applicantNo;
+	private CoopApplicant applicantNo;
 
-    public CoopAppMaterial() {
-    }
+	public CoopAppMaterial() {
+	}
 
-    public CoopAppMaterial(Integer appMatRecno) {
-        this.appMatRecno = appMatRecno;
-    }
+	public CoopAppMaterial(Integer appMatNum) {
+		this.appMatNum = appMatNum;
+	}
 
-    public Integer getAppMatRecno() {
-        return appMatRecno;
-    }
+	public Integer getAppMatNum() {
+		return appMatNum;
+	}
 
-    public void setAppMatRecno(Integer appMatRecno) {
-        this.appMatRecno = appMatRecno;
-    }
+	public void setAppMatNum(Integer appMatNum) {
+		this.appMatNum = appMatNum;
+	}
 
-    public Date getDateBorrowed() {
-        return dateBorrowed;
-    }
+	public Date getDateBorrowed() {
+		return dateBorrowed;
+	}
 
-    public void setDateBorrowed(Date dateBorrowed) {
-        this.dateBorrowed = dateBorrowed;
-    }
+	public void setDateBorrowed(Date dateBorrowed) {
+		this.dateBorrowed = dateBorrowed;
+	}
 
-    public Date getDateReturned() {
-        return dateReturned;
-    }
+	public Date getDateReturned() {
+		return dateReturned;
+	}
 
-    public void setDateReturned(Date dateReturned) {
-        this.dateReturned = dateReturned;
-    }
+	public void setDateReturned(Date dateReturned) {
+		this.dateReturned = dateReturned;
+	}
 
-    public CoopEducMaterial getInvNo() {
-        return invNo;
-    }
+	public CoopEducMaterial getInvNo() {
+		return invNo;
+	}
 
-    public void setInvNo(CoopEducMaterial invNo) {
-        this.invNo = invNo;
-    }
+	public void setInvNo(CoopEducMaterial invNo) {
+		this.invNo = invNo;
+	}
 
-    public CoopApplicant getApplicantNo() {
-        return applicantNo;
-    }
+	public CoopApplicant getApplicantNo() {
+		return applicantNo;
+	}
 
-    public void setApplicantNo(CoopApplicant applicantNo) {
-        this.applicantNo = applicantNo;
-    }
+	public void setApplicantNo(CoopApplicant applicantNo) {
+		this.applicantNo = applicantNo;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (appMatRecno != null ? appMatRecno.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (appMatNum != null ? appMatNum.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CoopAppMaterial)) {
-            return false;
-        }
-        CoopAppMaterial other = (CoopAppMaterial) object;
-        if ((this.appMatRecno == null && other.appMatRecno != null) || (this.appMatRecno != null && !this.appMatRecno.equals(other.appMatRecno))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof CoopAppMaterial)) {
+			return false;
+		}
+		CoopAppMaterial other = (CoopAppMaterial) object;
+		if ((this.appMatNum == null && other.appMatNum != null) || (this.appMatNum != null && !this.appMatNum.equals(other.appMatNum))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "model.CoopAppMaterial[ appMatRecno=" + appMatRecno + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "model.CoopAppMaterial[ appMatNum=" + appMatNum + " ]";
+	}
+	
 }
